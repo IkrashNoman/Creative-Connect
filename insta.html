@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+
+</head>
+<!-- Mobile Nav Button -->
+<button class="mobile-nav-toggle" onclick="toggleMobileNav()">☰</button>
+
+<script>
+  function toggleMobileNav() {
+    const nav = document.querySelector("nav ul");
+    nav.classList.toggle("hidden");
+  }
+</script>
+<link rel = 'stylesheet' href = 'style.css'>
+<script  type = 'module' src = 'firebase.js'></script>
+<body>
+ 
+
+<!-- ✅ Top Bar -->
+<div class="top-bar">
+  <div class="container top-bar-content">
+    <div class="contact-info d-flex align-items-center">
+      <div class="contact-item d-flex align-items-center">
+        <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/telephone.svg" alt="Phone" class="contact-icon" style="width: 16px; height: 16px;">
+        <span class="contact-text" style="color: white;">+971-123-456-789</span>
+      </div>
+      <div class="separator-line-vertical"></div>
+      <div class="contact-item d-flex align-items-center">
+        <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/envelope.svg" alt="Mail" class="contact-icon" style="width: 16px; height: 16px;">
+        <span class="contact-text" style="color: white;">hi@printshop.com</span>
+      </div>
+    </div>
+    <div class="promo-info d-flex align-items-center">
+      <span class="promo-text" style="color: white;">Bulk order and Get Free Shipping</span>
+      <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/info-circle.svg" alt="Info" class="promo-icon" style="width: 16px; height: 16px;">
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Main Header -->
+<header class="main-header-area">
+  <div class="container main-header-content d-flex align-items-center justify-content-between">
+    <a href="/" class="logo">
+      <img src="https://creativeprints.ae/wp-content/uploads/2024/03/website-logo.png" alt="Printshop Logo">
+    </a>
+    <div class="search-bar d-flex align-items-center">
+      <input type="text" placeholder="What are you looking to print on?" class="search-input">
+      <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/search.svg" alt="Search" class="search-icon" style="width: 16px; height: 16px;">
+    </div>
+    <div class="header-actions d-flex align-items-center">
+      <div class="action-item d-flex align-items-center">
+        <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/question-circle.svg" alt="Help" class="action-icon" style="width: 16px; height: 16px;">
+        <span>Help Centre</span>
+      </div>
+      <div class="action-item d-flex align-items-center">
+        <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/geo-alt.svg" alt="Location" class="action-icon" style="width: 16px; height: 16px;">
+        <span>UAE</span>
+      </div>
+
+      <!-- ✅ Admin Panel Link -->
+      <a href="/adminlogin.html" style="text-decoration: none; color: black;">
+        <div class="action-item d-flex align-items-center" style="cursor:pointer; gap: 6px;">
+          <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/speedometer.svg" alt="Admin" style="width: 16px; height: 16px;">
+          <span style="font-size: 14px;">Admin Panel</span>
+        </div>
+      </a>
+
+      <!-- ✅ Login/Signup -->
+      <div style="display: flex; gap: 20px; align-items: center; ">
+        <a href="javascript:void(0)" onclick="openModal('signup')" style="text-decoration: none; color: black;">
+          <div class="action-item d-flex align-items-center" style="cursor:pointer; gap: 6px;">
+            <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/icons/person.svg" alt="Login" style="width: 16px; height: 16px;">
+            <span id="userInitial" style="font-size: 14px;">Login</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+ 
+
+
+<!-- ✅ Modal Login/Signup Styled -->
+<style>
+  #authModal .transition {
+    transition: all 0.5s ease-in-out;
+  }
+  #leftPane, #rightPane {
+    transition: all 0.5s ease-in-out;
+  }
+</style>
+
+<div id="authModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(0,0,0,0.4);backdrop-filter:blur(4px);z-index:9999;display:flex;align-items:center;justify-content:center; display: none;">
+  <div onclick="event.stopPropagation()" class="transition" style="background:#fff;border-radius:20px;max-width:860px;width:100%;display:flex;overflow:hidden;box-shadow:0 0 30px rgba(0,0,0,0.2);">
+    <div id="leftPane" class="transition" style="flex:1;background:linear-gradient(to right,#891f1a,#891f1a);color:white;padding:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;">
+      <h2 id="leftHeading" style="font-size:26px;font-weight:700;margin-bottom:20px;">Welcome Back! 🎉</h2>
+      <p id="leftDesc" style="font-size:14px;margin-bottom:30px;">To keep connected with us please login with your personal info</p>
+      <button onclick="toggleAuth('signin')" id="leftButton" style="background:white;border:none;color:#ff5858;padding:10px 30px;border-radius:25px;font-weight:600;cursor:pointer;">SIGN IN</button>
+    </div>
+    <div id="rightPane" class="transition" style="flex:1;padding:40px;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+      <h2 id="rightHeading" style="font-size:26px;font-weight:700;margin-bottom:20px;">Create Account 🚀</h2>
+      <div style="display:flex;gap:10px;margin-bottom:20px;">
+        <button style="border:1px solid #ccc;border-radius:50%;width:40px;height:40px;background:white;cursor:pointer;">f</button>
+        <button style="border:1px solid #ccc;border-radius:50%;width:40px;height:40px;background:white;cursor:pointer;">G+</button>
+        <button style="border:1px solid #ccc;border-radius:50%;width:40px;height:40px;background:white;cursor:pointer;">in</button>
+      </div>
+      <p id="rightDesc" style="font-size:14px;margin-bottom:20px;">or use your email for registration</p>
+      <input id="nameField" type="text" placeholder="👤 Name" style="width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;margin-bottom:10px;">
+      <input id="emailField" type="email" placeholder="👁️ Email" style="width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;margin-bottom:10px;">
+      <input id="passwordField" type="password" placeholder="🔐 Password" style="width:100%;padding:12px;border-radius:8px;border:1px solid #ccc;margin-bottom:20px;">
+      <button id="submitBtn" onclick="handleAuth()" style="background-color:#ff5858;color:white;border:none;padding:12px 30px;border-radius:25px;font-weight:600;cursor:pointer;">SIGN UP</button>
+    </div>
+  </div>
+</div>
+<!-- ✅ Chat Toggle Button -->
+<div id="chatToggle" onclick="toggleChatBot()" style="position: fixed; bottom: 20px; right: 20px; background: #ff5858; color: white; border-radius: 50%; width: 60px; height: 60px; display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; box-shadow: 0 0 10px rgba(0,0,0,0.3);">
+    
+  💬
+</div>
+
+<!-- ✅ Chat Widget -->
+<div id="chatWidget" style="display:none; position:fixed; bottom:90px; right:20px; width:300px; height:400px; background:white; border-radius:12px; box-shadow:0 0 15px rgba(0,0,0,0.2); z-index:9999; overflow:hidden; display:flex; flex-direction:column; display: none;">
+  <div style="background:#891f1a; color:white; padding:12px; font-weight:600;">Chat with us</div>
+  <div id="chatMessages" style="flex:1; padding:10px; overflow-y:auto;"></div>
+  <div style="padding:10px; border-top:1px solid #ccc; display:flex; gap:8px;">
+    <input id="userMessage" type="text" placeholder="Type a message..." style="flex:1; padding:8px; border-radius:6px; border:1px solid #ccc;">
+    <button onclick="sendUserMessage()" style="padding:8px 12px; background:#891f1a; color:white; border:none; border-radius:6px; cursor:pointer;">Send</button>
+  </div>
+</div>
+
+<script>
+  const autoResponses = [
+    "Hi there! 👋 How can I assist you today?",
+    "We offer fast delivery across the UAE 🚚",
+    "Need help with custom printing? We’ve got you covered!",
+    "Check out our ongoing promotions 🎉",
+    "You can contact our team 24/7 via chat or email."
+  ];
+
+  let chatInitialized = false;
+
+  function toggleChatBot() {
+    const chat = document.getElementById('chatWidget');
+    const msgContainer = document.getElementById('chatMessages');
+    const isVisible = chat.style.display === 'block';
+
+    chat.style.display = isVisible ? 'none' : 'block';
+
+    if (!chatInitialized && !isVisible) {
+      autoResponses.forEach((msg, i) => {
+        const el = document.createElement('div');
+        el.style.marginBottom = '10px';
+        el.style.background = '#f1f1f1';
+        el.style.padding = '8px 12px';
+        el.style.borderRadius = '8px';
+        el.innerText = msg;
+        setTimeout(() => msgContainer.appendChild(el), 500 * i);
+      });
+      chatInitialized = true;
+    }
+  }
+
+  function sendUserMessage() {
+    const input = document.getElementById('userMessage');
+    const msg = input.value.trim();
+    if (!msg) return;
+    const el = document.createElement('div');
+    el.style.marginBottom = '10px';
+    el.style.background = '#e0f7fa';
+    el.style.padding = '8px 12px';
+    el.style.borderRadius = '8px';
+    el.style.textAlign = 'right';
+    el.innerText = msg;
+    document.getElementById('chatMessages').appendChild(el);
+    input.value = '';
+  }
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+<script>
+  function openModal(mode = 'signup') {
+    document.getElementById("authModal").style.display = "flex";
+    toggleAuth(mode);
+  }
+
+  function closeModal() {
+    document.getElementById("authModal").style.display = "none";
+  }
+
+  function toggleAuth(mode) {
+    const right = document.getElementById('rightPane');
+    const left = document.getElementById('leftPane');
+    const nameField = document.getElementById('nameField');
+    if (mode === 'signin') {
+      document.getElementById('rightHeading').innerText = 'Sign In 👋';
+      document.getElementById('rightDesc').innerText = 'or use your account';
+      nameField.style.display = 'none';
+      document.getElementById('emailField').placeholder = '🔍 Email';
+      document.getElementById('passwordField').placeholder = '🔐 Password';
+      document.getElementById('submitBtn').innerText = 'SIGN IN';
+      document.getElementById('leftHeading').innerText = 'Hello, Friend! ✨';
+      document.getElementById('leftDesc').innerText = 'Enter your personal details and start your journey with us';
+      document.getElementById('leftButton').innerText = 'SIGN UP';
+      document.getElementById('leftButton').onclick = () => toggleAuth('signup');
+    } else {
+      document.getElementById('rightHeading').innerText = 'Create Account 🚀';
+      document.getElementById('rightDesc').innerText = 'or use your email for registration';
+      nameField.style.display = 'block';
+      document.getElementById('emailField').placeholder = '👁️ Email';
+      document.getElementById('passwordField').placeholder = '🔐 Password';
+      document.getElementById('submitBtn').innerText = 'SIGN UP';
+      document.getElementById('leftHeading').innerText = 'Welcome Back! 🎉';
+      document.getElementById('leftDesc').innerText = 'To keep connected with us please login with your personal info';
+      document.getElementById('leftButton').innerText = 'SIGN IN';
+      document.getElementById('leftButton').onclick = () => toggleAuth('signin');
+    }
+  }
+
+  function handleAuth() {
+    const isSignup = document.getElementById('submitBtn').innerText.includes('UP');
+    const email = document.getElementById('emailField').value.trim();
+    const name = document.getElementById('nameField').value.trim();
+    if (!email) return;
+    const shortEmail = email.substring(0, 8);
+    document.getElementById('userInitial').innerText = shortEmail;
+
+    Toastify({
+      text: isSignup ? "You have successfully signed up and logged in!" : "You have successfully logged in!",
+      duration: 3000,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+      stopOnFocus: true
+    }).showToast();
+
+    if (!isSignup) {
+      closeModal();
+    }
+  }
+
+  document.getElementById("authModal").addEventListener("click", function (e) {
+    if (e.target.id === "authModal") closeModal();
+  });
+</script>
+
+
+<section id="section-category-nav" style="position: relative; font-family: sans-serif;">
+  <div onmouseenter="cancelHide()" onmouseleave="hideDropdown()" style="position: relative;">
+    <nav>
+        
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; gap: 30px; justify-content: center;">
+        <li  onclick="handleDropdownClick('business')"   onmouseenter="showDropdown('business')"><a href="/categories2.html" style="text-decoration:none;color:#891f1a;">Business Card</a></li>
+        <li onmouseenter="showDropdown('gift')"><a href="/categoris1.html" style="text-decoration:none;color:#891f1a;">Gift Items</a></li>
+        <li onmouseenter="showDropdown('stickers')"><a href="/categories2.html" style="text-decoration:none;color:#891f1a;">Stickers</a></li>
+        <li onmouseenter="showDropdown('apparel')"><a href="/categories3.html" style="text-decoration:none;color:#891f1a;">Apparel</a></li>
+        <li onmouseenter="showDropdown('signage')"><a href="/categories4.html" style="text-decoration:none;color:#891f1a;">Signage</a></li>
+        <li onmouseenter="showDropdown('flags')"><a href="/categories5.html" style="text-decoration:none;color:#891f1a;">Flags</a></li>
+        <li onmouseenter="showDropdown('backdrops')"><a href="#" style="text-decoration:none;color:#891f1a;">Backdrops</a></li>
+        <li onmouseenter="showDropdown('flyers')"><a href="#" style="text-decoration:none;color:#891f1a;">Flyers</a></li>
+        <li onmouseenter="showDropdown('gift')"><a href="/categoris1.html" style="text-decoration:none;color:#891f1a;">Gift Items</a></li>
+        <li onmouseenter="showDropdown('stickers')"><a href="/categories2.html" style="text-decoration:none;color:#891f1a;">Stickers</a></li>
+        <li onmouseenter="showDropdown('apparel')"><a href="/categories3.html" style="text-decoration:none;color:#891f1a;">Apparel</a></li>
+        <li onmouseenter="showDropdown('signage')"><a href="/categories4.html" style="text-decoration:none;color:#891f1a;">Signage</a></li>
+        <li onmouseenter="showDropdown('flags')"><a href="/categories5.html" style="text-decoration:none;color:#891f1a;">Flags</a></li>
+        <li onmouseenter="showDropdown('backdrops')"><a href="#" style="text-decoration:none;color:#891f1a;">Backdrops</a></li>
+        <li onmouseenter="showDropdown('flyers')"><a href="#" style="text-decoration:none;color:#891f1a;">Flyers</a></li>
+         <li onmouseenter="showDropdown('flags')"><a href="/categories5.html" style="text-decoration:none;color:#891f1a;">Flags</a></li>
+
+      </ul>
+    </nav>
+
+    
+
+      
+
+  
+
+    <div id="mega-dropdown" style="width: 100%; max-width: 1470px; height: 380px; background:#f8f5f5; position:absolute; top:60px; left:50%; transform:translateX(-50%) translateY(20px); z-index:999; border:3px solid #c7bebe; border-radius:16px; box-sizing:border-box; overflow:hidden; transition:all .3s ease; opacity:0; pointer-events:none;">
+      <div id="dropdown-content-area" style="display:flex; justify-content: space-between; padding: 25px; box-sizing: border-box; gap: 20px;"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const dropdown = document.getElementById("mega-dropdown");
+  const contentArea = document.getElementById("dropdown-content-area");
+  let hideTimeout;
+
+  const dropdownData = {
+
+    
+    business: {
+      title: "Business Card",
+      left: ["Standard", "Glossy", "Matte", "Textured","ram","hoa"],
+      right: ["Rounded", "Luxury", "Plastic", "UV Coated","same","ram"],
+      images: [
+  "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD"               ,  "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD",
+        "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD"           , "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD",
+        "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD"             , "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD",
+        "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD"              , "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD",
+        "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD"               , "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD",
+        "https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD"             ,"https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD"
+        
+        
+        
+]
+
+      
+    },
+    gift: {
+      title: "Gift Items",
+      left: ["Mugs", "Pens", "Keychains", "USBs"],
+      right: ["Calendars", "Wallets", "Notebooks", "Cups"],
+images: [
+  "https://i.ibb.co/LRw9xDM/g2.png", "https://i.ibb.co/H2YVqTd/g7.png",
+        "https://i.ibb.co/PN3dnzk/g6.png", "https://i.ibb.co/tQVtWJf/g5.png",
+        "https://i.ibb.co/H75PC5q/g4.png", "https://i.ibb.co/7CX0CKv/g3.png",
+        "https://i.ibb.co/kmksW5k/g8.png", "https://i.ibb.co/0qsH9HJ/g1.png",
+        "https://i.ibb.co/QdLFxw6/g9.png", "https://i.ibb.co/zfgV5wF/g10.png",
+        "https://i.ibb.co/LNRQ5bs/g11.png","https://i.ibb.co/zfgV5wF/g10.png"
+]
+    },
+    stickers: {
+      title: "Stickers",
+      left: ["Die-Cut", "Circle", "Clear", "Vinyl"],
+      right: ["Foil", "Holographic", "Labels", "Static Cling"],
+      images: [
+  "https://i.ibb.co/LRw9xDM/g2.png", "https://i.ibb.co/H2YVqTd/g7.png",
+        "https://i.ibb.co/PN3dnzk/g6.png", "https://i.ibb.co/tQVtWJf/g5.png",
+        "https://i.ibb.co/H75PC5q/g4.png", "https://i.ibb.co/7CX0CKv/g3.png",
+        "https://i.ibb.co/kmksW5k/g8.png", "https://i.ibb.co/0qsH9HJ/g1.png",
+        "https://i.ibb.co/QdLFxw6/g9.png", "https://i.ibb.co/zfgV5wF/g10.png",
+        "https://i.ibb.co/LNRQ5bs/g11.png","https://i.ibb.co/zfgV5wF/g10.png"
+]
+    },
+    apparel: {
+      title: "Apparel",
+      left: ["T-Shirts", "Hoodies", "Caps", "Jackets"],
+      right: ["Polo Shirts", "Uniforms", "Sportswear", "Vests"],
+     images: [
+  "https://i.ibb.co/LRw9xDM/g2.png", "https://i.ibb.co/H2YVqTd/g7.png",
+        "https://i.ibb.co/PN3dnzk/g6.png", "https://i.ibb.co/tQVtWJf/g5.png",
+        "https://i.ibb.co/H75PC5q/g4.png", "https://i.ibb.co/7CX0CKv/g3.png",
+        "https://i.ibb.co/kmksW5k/g8.png", "https://i.ibb.co/0qsH9HJ/g1.png",
+        "https://i.ibb.co/QdLFxw6/g9.png", "https://i.ibb.co/zfgV5wF/g10.png",
+        "https://i.ibb.co/LNRQ5bs/g11.png","https://i.ibb.co/zfgV5wF/g10.png"
+]
+    },
+    signage: {
+      title: "Signage",
+      left: ["Acrylic", "LED Signs", "Rollup Banners", "Wall Signs"],
+      right: ["Standees", "Boards", "Mounted", "Glass Signs"],
+      images: [
+  "https://i.ibb.co/LRw9xDM/g2.png", "https://i.ibb.co/H2YVqTd/g7.png",
+        "https://i.ibb.co/PN3dnzk/g6.png", "https://i.ibb.co/tQVtWJf/g5.png",
+        "https://i.ibb.co/H75PC5q/g4.png", "https://i.ibb.co/7CX0CKv/g3.png",
+        "https://i.ibb.co/kmksW5k/g8.png", "https://i.ibb.co/0qsH9HJ/g1.png",
+        "https://i.ibb.co/QdLFxw6/g9.png", "https://i.ibb.co/zfgV5wF/g10.png",
+        "https://i.ibb.co/LNRQ5bs/g11.png","https://i.ibb.co/zfgV5wF/g10.png"
+]
+    },
+    flags: {
+      title: "Flags",
+      left: ["Beach Flags", "Teardrop", "Feather", "Pole Flags"],
+      right: ["Outdoor", "Desk", "Event", "Wall Flags"],
+      images: [
+  "https://i.ibb.co/LRw9xDM/g2.png", "https://i.ibb.co/H2YVqTd/g7.png",
+        "https://i.ibb.co/PN3dnzk/g6.png", "https://i.ibb.co/tQVtWJf/g5.png",
+        "https://i.ibb.co/H75PC5q/g4.png", "https://i.ibb.co/7CX0CKv/g3.png",
+        "https://i.ibb.co/kmksW5k/g8.png", "https://i.ibb.co/0qsH9HJ/g1.png",
+        "https://i.ibb.co/QdLFxw6/g9.png", "https://i.ibb.co/zfgV5wF/g10.png",
+        "https://i.ibb.co/LNRQ5bs/g11.png","https://i.ibb.co/zfgV5wF/g10.png"
+]
+    },
+    backdrops: {
+      title: "Backdrops",
+      left: ["Step & Repeat", "Pop-Up", "Banner Stand", "Modular Booth"],
+      right: ["Exhibition Wall", "Table Cloths", "Stands", "Display Booths"],
+      images: [
+  "https://i.ibb.co/LRw9xDM/g2.png", "https://i.ibb.co/H2YVqTd/g7.png",
+        "https://i.ibb.co/PN3dnzk/g6.png", "https://i.ibb.co/tQVtWJf/g5.png",
+        "https://i.ibb.co/H75PC5q/g4.png", "https://i.ibb.co/7CX0CKv/g3.png",
+        "https://i.ibb.co/kmksW5k/g8.png", "https://i.ibb.co/0qsH9HJ/g1.png",
+        "https://i.ibb.co/QdLFxw6/g9.png", "https://i.ibb.co/zfgV5wF/g10.png",
+        "https://i.ibb.co/LNRQ5bs/g11.png","https://i.ibb.co/zfgV5wF/g10.png"
+]
+    },
+    flyers: {
+      title: "Flyers",
+      left: ["A4 Flyers", "A5 Flyers", "Folded", "Gloss"],
+      right: ["Matte", "Promotional", "Handouts", "Bulk Flyers"],
+      images: [
+  "https://i.ibb.co/LRw9xDM/g2.png", "https://i.ibb.co/H2YVqTd/g7.png",
+        "https://i.ibb.co/PN3dnzk/g6.png", "https://i.ibb.co/tQVtWJf/g5.png",
+        "https://i.ibb.co/H75PC5q/g4.png", "https://i.ibb.co/7CX0CKv/g3.png",
+        "https://i.ibb.co/kmksW5k/g8.png", "https://i.ibb.co/0qsH9HJ/g1.png",
+        "https://i.ibb.co/QdLFxw6/g9.png", "https://i.ibb.co/zfgV5wF/g10.png",
+        "https://i.ibb.co/LNRQ5bs/g11.png","https://i.ibb.co/zfgV5wF/g10.png"
+]
+    }
+  };
+
+  function showDropdown(id) {
+    clearTimeout(hideTimeout);
+    const data = dropdownData[id];
+    const totalSubs = data.left.length + data.right.length;
+const imagesToShow = data.images;
+
+    contentArea.innerHTML = `
+      <div style="width:40%; display:flex; gap:20px;">
+        <div>
+          <h4 style="margin:0 0 10px; color:#891f1a;">${data.title}</h4>
+          <ul style="margin:0;padding:0;list-style:none;line-height:1.8;color:red;">
+            ${data.left.map(li => `<li>${li}</li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin:0 0 10px;">&nbsp;</h4>
+          <ul style="margin:0;padding:0;list-style:none;line-height:1.8;">
+            ${data.right.map(li => `<li>${li}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      
+
+
+      <div style="width:1px;background:#ccc;"></div>
+      <div style="width:58%; display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:10px;">
+        ${imagesToShow.map(src => `
+          <img src="${src}" style="width:100%;border-radius:8px;transition:transform .3s ease;" 
+            onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" />
+        `).join('')}
+      </div>
+    `;
+    dropdown.style.opacity = '1';
+    dropdown.style.pointerEvents = 'auto';
+    dropdown.style.transform = 'translateX(-50%) translateY(0)';
+  }
+
+  function hideDropdown() {
+    hideTimeout = setTimeout(() => {
+      dropdown.style.opacity = '0';
+      dropdown.style.pointerEvents = 'none';
+      dropdown.style.transform = 'translateX(-50%) translateY(20px)';
+    }, 200);
+  }
+
+  function cancelHide() {
+    clearTimeout(hideTimeout);
+  }
+</script>
+
+
+<script>
+  function showDropdown(categoryId) {
+    const dropdown = document.getElementById("mega-dropdown");
+    dropdown.style.display = "block";
+
+    const allContents = document.querySelectorAll(".dropdown-content");
+    allContents.forEach(el => el.style.display = "none");
+
+    const active = document.getElementById(categoryId);
+    if (active) active.style.display = "flex";
+  }
+
+  const dropdown = document.getElementById("mega-dropdown");
+const nav = document.getElementById("section-category-nav");
+
+nav.addEventListener("mouseenter", () => {
+  dropdown.style.pointerEvents = "auto";
+});
+
+let dropdownTimeout;
+
+
+nav.addEventListener("mouseleave", () => {
+  dropdownTimeout = setTimeout(() => {
+    dropdown.style.display = "none";
+  }, 50000); // delay for smoother exit
+});
+
+dropdown.addEventListener("mouseenter", () => {
+  clearTimeout(dropdownTimeout);
+  dropdown.style.display = "block";
+});
+
+dropdown.addEventListener("mouseleave", () => {
+  dropdown.style.display = "none";
+});
+
+
+</script>
+
+
+<section id="section-hero-banner" class="hero-banner-section">
+  <img id="heroImage" 
+       src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/510249305_122170072766334321_3752955423075173790_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=f1wIphqG9qEQ7kNvwHHuK6T&_nc_oc=AdklXmQeocGu5XygxQI01mfnMZ7BCGo3bzSHrJPIVTcLtaClzUYyr3WR3HNmXQo1YJwGfmNu8MysVt5uXZ8SpQ27&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSZNfJVK_gEYJ7fzWUKNLQ&oh=00_AfP4EEp8f7GD0zoZM1ZXpycZ51km8ahpVQqlTsDofj-7Xg&oe=685B4C42" 
+       alt="Hero Banner" 
+       style="width: 100%; height: auto; transition: opacity 1s ease-in-out;">
+       
+
+
+</section>
+
+<script>
+  const imageElement = document.getElementById('heroImage');
+  const images = [
+    'https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/508444455_122169865034334321_5040639536331207310_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LAR4UwFY9i4Q7kNvwG-jsYK&_nc_oc=AdkG0cPxsHzHUjRsIQlRgmxWxiN3-TY1NDN0Y7c8_HVLp1b-4ep-ITGdQYAcAc1ZsOZD_BeM2u1QaffvTttsSFkE&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=vbWyudnKLBnbKP4Z5tSgbg&oh=00_AfP__ARv08ieA6RJpvB6_h_4RDGjF7fJzJGul6Es_icLIg&oe=685C373B',
+
+    'https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509249154_122169875126334321_2973994241582160473_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=mddzSW0CUToQ7kNvwGSs0J8&_nc_oc=AdkXr5ETb10jT-kynsEpW2OmXXDT_pIcGLUlCoWaTDi7j4tgNx1nWBk6z0YzAufZYwCNNB6NsdSOZ_l-Z-zQTX4e&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=DZWvCXzXQaVHpqdQs_9HGA&oh=00_AfOVeEVIMagdrPbxLLzUNMydGQub8WZoLv3ffjMZa4xi1A&oe=685C3956',
+
+    'https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/508444455_122169865034334321_5040639536331207310_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LAR4UwFY9i4Q7kNvwG-jsYK&_nc_oc=AdkG0cPxsHzHUjRsIQlRgmxWxiN3-TY1NDN0Y7c8_HVLp1b-4ep-ITGdQYAcAc1ZsOZD_BeM2u1QaffvTttsSFkE&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=vbWyudnKLBnbKP4Z5tSgbg&oh=00_AfP__ARv08ieA6RJpvB6_h_4RDGjF7fJzJGul6Es_icLIg&oe=685C373B'
+  ];
+  
+  let index = 0;
+
+  setInterval(() => {
+    index = (index + 1) % images.length;
+    imageElement.style.opacity = 0;
+    setTimeout(() => {
+      imageElement.src = images[index];
+      imageElement.style.opacity = 1;
+    }, 500);
+  }, 3000);
+</script>
+
+
+
+
+
+
+
+<section id="section-services-info" class="services-info-section">
+ <div style="padding: 0px; font-family: sans-serif; text-align: center;">
+ <h2 id="carouselHeading" class="carousel-heading" style="font-size: 28px; color: #891f1a; margin-bottom: 10px;">
+      Online Printing Services with CreativePrint
+    </h2>
+    <p id="carouselParagraph" class="carousel-description" style="font-size: 16px; max-width: 900px; margin: 0 auto 30px;">
+      From business cards to banners, HelloPrint offers a wide range of online printing & personalised print products to enhance your brand and marketing efforts, catering to all your professional and personal printing needs. Flyers, Booklets, Rollup Banners, Posters, Business Cards, Folded Leaflets.
+    </p>
+
+
+<div>
+
+  <div style="position: relative; max-width: 1100px; margin: auto; overflow: hidden;">
+    <!-- Left Arrow -->
+    <button onclick="scrollCarousel(-1)" style="position:absolute;top:50%;left:-15px;transform:translateY(-50%);background-color:#891f1a;border:none;color:white;font-size:28px;padding:10px 18px;cursor:pointer;z-index:1000 ;border-radius:50%;box-shadow:0 0 10px rgba(0,0,0,0.4);transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">❮</button>
+
+    <div id="carousel" style="display: flex; transition: transform 0.5s ease; gap: 20px;">
+  
+      <!-- Replace with your real image links -->
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/510995877_122170075562334321_424079792716631995_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3lXyBupJH9EQ7kNvwHVU9Mr&_nc_oc=AdnRKkMZ4aZPwMIZQbLntYIA5VoTErk10kk4JFUHFASS6mIGyuM7-tEPu9yxnuGwM6QWUdyvtOu3hhgUVN2ixlFu&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfMvjRrNbrmU0EiMAmnVEcBLa-Hy6HDCxqe6UqzKlUC1rg&oe=685B462B" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509423535_122170075412334321_1920177087331194997_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7P_INpstRi0Q7kNvwFRIvrW&_nc_oc=Adm7jyQ3k7Z_feUnI4nYltbOpfjJc50yJ12tiI2ZaFAJB3MIFlv8GHJmzMnwPCnPcPcdyZYzlsX8wKkBYUKlaWSf&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfOUaF6Nysn7cH170YP3j5ZmtkJu1hHwjeYMegGJzpIDGw&oe=685B4D54" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509428118_122170075316334321_5122955334282522466_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=FGoav5XvcQkQ7kNvwGCY7OR&_nc_oc=AdkKxCo8OUNxM4N-l9oi_hL8SOG5NAmSm3KdP_sbO8byTBAXyi_6z50LnpwskrpFcUhKbl6_UoU1ZWK5GPISijvh&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfPHmaCPLTEA_q9yR5GhJMtRhaRD6eQ3lMMBfKXPMdSofg&oe=685B468D" style="width:225px;height:150px;-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/510995877_122170075562334321_424079792716631995_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3lXyBupJH9EQ7kNvwHVU9Mr&_nc_oc=AdnRKkMZ4aZPwMIZQbLntYIA5VoTErk10kk4JFUHFASS6mIGyuM7-tEPu9yxnuGwM6QWUdyvtOu3hhgUVN2ixlFu&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfMvjRrNbrmU0EiMAmnVEcBLa-Hy6HDCxqe6UqzKlUC1rg&oe=685B462B" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509423535_122170075412334321_1920177087331194997_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7P_INpstRi0Q7kNvwFRIvrW&_nc_oc=Adm7jyQ3k7Z_feUnI4nYltbOpfjJc50yJ12tiI2ZaFAJB3MIFlv8GHJmzMnwPCnPcPcdyZYzlsX8wKkBYUKlaWSf&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfOUaF6Nysn7cH170YP3j5ZmtkJu1hHwjeYMegGJzpIDGw&oe=685B4D54" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509428118_122170075316334321_5122955334282522466_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=FGoav5XvcQkQ7kNvwGCY7OR&_nc_oc=AdkKxCo8OUNxM4N-l9oi_hL8SOG5NAmSm3KdP_sbO8byTBAXyi_6z50LnpwskrpFcUhKbl6_UoU1ZWK5GPISijvh&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfPHmaCPLTEA_q9yR5GhJMtRhaRD6eQ3lMMBfKXPMdSofg&oe=685B468D" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/511152758_122170075664334321_4182934447876769803_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=kFB7T83c6ucQ7kNvwFgzowQ&_nc_oc=AdmZs3B9Pj2HIQKm-3Qq64JANLCQDMb7jp_PTWL8nJ6SBJZnYLm2sTvICXkvcmw7cWzrP22fF5BcyrPK44y2aKbk&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=rjCEwRIYuagGsGCiToN1lA&oh=00_AfPEIHdEBReSQu0G-0Fur1R31gW48H9p7J9rZt1uVJHkVg&oe=685B33FD" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/510995877_122170075562334321_424079792716631995_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3lXyBupJH9EQ7kNvwHVU9Mr&_nc_oc=AdnRKkMZ4aZPwMIZQbLntYIA5VoTErk10kk4JFUHFASS6mIGyuM7-tEPu9yxnuGwM6QWUdyvtOu3hhgUVN2ixlFu&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfMvjRrNbrmU0EiMAmnVEcBLa-Hy6HDCxqe6UqzKlUC1rg&oe=685B462B" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509423535_122170075412334321_1920177087331194997_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7P_INpstRi0Q7kNvwFRIvrW&_nc_oc=Adm7jyQ3k7Z_feUnI4nYltbOpfjJc50yJ12tiI2ZaFAJB3MIFlv8GHJmzMnwPCnPcPcdyZYzlsX8wKkBYUKlaWSf&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfOUaF6Nysn7cH170YP3j5ZmtkJu1hHwjeYMegGJzpIDGw&oe=685B4D54" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509428118_122170075316334321_5122955334282522466_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=FGoav5XvcQkQ7kNvwGCY7OR&_nc_oc=AdkKxCo8OUNxM4N-l9oi_hL8SOG5NAmSm3KdP_sbO8byTBAXyi_6z50LnpwskrpFcUhKbl6_UoU1ZWK5GPISijvh&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfPHmaCPLTEA_q9yR5GhJMtRhaRD6eQ3lMMBfKXPMdSofg&oe=685B468D" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/510995877_122170075562334321_424079792716631995_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3lXyBupJH9EQ7kNvwHVU9Mr&_nc_oc=AdnRKkMZ4aZPwMIZQbLntYIA5VoTErk10kk4JFUHFASS6mIGyuM7-tEPu9yxnuGwM6QWUdyvtOu3hhgUVN2ixlFu&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfMvjRrNbrmU0EiMAmnVEcBLa-Hy6HDCxqe6UqzKlUC1rg&oe=685B462B" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509423535_122170075412334321_1920177087331194997_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7P_INpstRi0Q7kNvwFRIvrW&_nc_oc=Adm7jyQ3k7Z_feUnI4nYltbOpfjJc50yJ12tiI2ZaFAJB3MIFlv8GHJmzMnwPCnPcPcdyZYzlsX8wKkBYUKlaWSf&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfOUaF6Nysn7cH170YP3j5ZmtkJu1hHwjeYMegGJzpIDGw&oe=685B4D54" style="width:225px;height:150px;border-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+      <img src="https://scontent.fisb1-2.fna.fbcdn.net/v/t39.30808-6/509428118_122170075316334321_5122955334282522466_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=FGoav5XvcQkQ7kNvwGCY7OR&_nc_oc=AdkKxCo8OUNxM4N-l9oi_hL8SOG5NAmSm3KdP_sbO8byTBAXyi_6z50LnpwskrpFcUhKbl6_UoU1ZWK5GPISijvh&_nc_zt=23&_nc_ht=scontent.fisb1-2.fna&_nc_gid=oSyzyB1x8GVefhJE7XIPAA&oh=00_AfPHmaCPLTEA_q9yR5GhJMtRhaRD6eQ3lMMBfKXPMdSofg&oe=685B468D" style="width:225px;height:150px;-radius:10px;object-fit:cover;flex-shrink:0;transition:all 0.4s ease;filter:brightness(1);" onmouseover="this.style.transform='scale(1.05)';this.style.filter='brightness(1.2) blur(1px)'" onmouseout="this.style.transform='scale(1)';this.style.filter='brightness(1) blur(0)'" />
+    </div>
+<!-- Right Arrow -->
+    <button onclick="scrollCarousel(1)" style="position:absolute;top:50%;right:-15px;transform:translateY(-50%);background-color:#891f1a;border:none;color:white;font-size:28px;padding:10px 18px;cursor:pointer;z-index:2;border-radius:50%;box-shadow:0 0 10px rgba(0,0,0,0.4);transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">❯</button>
+    
+
+    
+  </div>
+</div>
+</div>
+<script>
+
+
+
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  carousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    carousel.style.cursor = 'grabbing';
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = scrollPosition;
+  });
+
+  document.addEventListener('mouseup', () => {
+
+    isDown = false;
+    carousel.style.cursor = 'grab';
+
+  });
+
+  document.addEventListener('mouseleave', () => {
+    isDown = false;
+    carousel.style.cursor = 'grab';
+  });
+
+  document.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - startX) * 1.5; // adjust speed here
+    scrollPosition = scrollLeft - walk;
+
+    // clamp
+    const maxScroll = carousel.scrollWidth - carousel.parentElement.offsetWidth;
+    if (scrollPosition < 0) scrollPosition = 0;
+    if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+
+    carousel.style.transform = `translateX(-${scrollPosition}px)`;
+  });
+</script>
+
+
+<script>
+  const carousel = document.getElementById("carousel");
+  const container = carousel.parentElement;
+  const cardWidth = 237; // image + gap
+  let scrollPosition = 0;
+
+  function scrollCarousel(direction) {
+    const visibleWidth = container.offsetWidth;
+    const totalScrollWidth = carousel.scrollWidth;
+    const maxScroll = totalScrollWidth - visibleWidth;
+
+    scrollPosition += direction * visibleWidth;
+
+    if (scrollPosition < 0) scrollPosition = 0;
+    if (scrollPosition > maxScroll) scrollPosition = maxScroll;
+
+    carousel.style.transform = `translateX(-${scrollPosition}px)`;
+  }
+</script>
+
+<script>
+
+</script>
+
+    </div>
+
+   <div style="padding: 0px; font-family: sans-serif; text-align: center;">
+  <h2 id="carousel2Heading" class="carousel2-heading" style="font-size: 28px; color: #891f1a; margin-bottom: 10px;">
+      Why choose CreativePrint?
+    </h2>
+    <p id="carousel2Paragraph" class="carousel2-description" style="font-size: 16px; max-width: 900px; margin: 0 auto 30px;">
+      From business cards to banners, HelloPrint offers a wide range of online printing & personalised print products to enhance your brand and marketing efforts, catering to all your professional and personal printing needs. Flyers, Booklets, Rollup Banners, Posters, Business Cards, Folded Leaflets.
+    </p>
+
+  <div style="position: relative; max-width: 1140px; margin: auto; overflow: hidden;">
+    <!-- Left Arrow -->
+    <button onclick="scrollWhyCarousel(-1)" style="position:absolute;top:50%;left:-35px;transform: translateY(-50%);background-color:#891f1a;border:none;color:white;font-size:28px;padding:10px 18px;cursor:pointer;z-index:2;border-radius:50%;box-shadow:0 0 10px rgba(0,0,0,0.4);transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">❮</button>
+
+    <div id="carousel2ImagesContainer" style="display: flex; transition: transform 0.5s ease; gap: 30px;">
+      <img src="https://creativeprints.ae/wp-content/uploads/2024/03/stainless-steel-coffee-tumbler-printing.webp"
+        alt="Image 1"
+        style="width:375px; height: 183px border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+
+      <img src="https://creativeprints.ae/wp-content/uploads/2024/03/stainless-steel-coffee-tumbler-printing.webp"
+        alt="Image 2"
+        style="width:375px; height: 183px border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+
+      <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+         <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px; border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+         <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+         <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+         <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+         <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px; border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+         <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px; border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+         <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width:375px; height: 183px; border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+         <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Untitled-1.webp"
+        alt="Image 3"
+        style="width: 375px; height: 183px; border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;"
+        onmouseover="this.style.transform='translateY(-10px) scale(1.05)'; this.style.boxShadow='0 15px 25px rgba(0,0,0,0.2)'; this.style.filter='hue-rotate(-10deg) saturate(1.2)'"
+        onmouseout="this.style.transform='translateY(0) scale(1)'; this.style.boxShadow='0 0 0 rgba(0,0,0,0)'; this.style.filter='none'" />
+        
+      <!-- You can add more images here -->
+    </div>
+
+    <!-- Right Arrow -->
+    <button onclick="scrollWhyCarousel(1)" style="position:absolute;top:50%;right:-35px;transform:translateY(-50%);background-color:#891f1a;border:none;color:white;font-size:28px;padding:10px 18px;cursor:pointer;z-index:2;border-radius:50%;box-shadow:0 0 10px rgba(0,0,0,0.4);transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">❯</button>
+    
+  </div>
+</div>
+
+
+<script>
+  let whyScrollIndex = 0;
+  const whyCarousel = document.getElementById("why-carousel");
+  const whyCardWidth = 337 + 30; // width + gap
+  const whyVisibleCount = 3;
+
+  function scrollWhyCarousel(direction) {
+    const totalItems = whyCarousel.children.length;
+    const maxIndex = Math.ceil(totalItems / whyVisibleCount) - 1;
+    whyScrollIndex += direction;
+
+    if (whyScrollIndex < 0) whyScrollIndex = 0;
+    if (whyScrollIndex > maxIndex) whyScrollIndex = maxIndex;
+
+    const scrollAmount = whyScrollIndex * whyCardWidth * whyVisibleCount;
+    whyCarousel.style.transform = `translateX(-${scrollAmount}px)`;
+  } 
+
+</script>
+
+</section>
+<section id="section-cta-bar" class="cta-bar-section">
+  <!-- This section is visually a plain bar (86:113), content could be added if specified -->
+</section>
+<section id="section-products" class="products-section">
+  <div class="container">
+    <div class="product-block text-center">
+      <h2 class="product-title">Boost Your Startup with best corporate items</h2>
+      <p class="product-description">From business cards to banners, HelloPrint offers a wide range of online printing & personalised print products to enhance your brand and marketing efforts, catering to all your professional and personal printing needs. Flyers, Booklets, Rollup Banners, Posters, Business Cards, Folded Leaflets.</p>
+      <div class="image-carousel d-flex align-items-center">
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Customized-Balloons-600x600.webp" alt="Product Image 1" class="carousel-image"> <!-- 86:119 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Customized-Balloons-600x600.webp" alt="Product Image 2" class="carousel-image"> <!-- 86:120 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Customized-Balloons-600x600.webp" alt="Product Image 3" class="carousel-image"> <!-- 86:121 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Customized-Balloons-600x600.webp" alt="Product Image 4" class="carousel-image"> <!-- 86:122 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Customized-Balloons-600x600.webp" alt="Product Image 5" class="carousel-image"> <!-- 86:133 -->
+        <!--合併圖片-->
+        
+      </div>
+    </div>
+
+    <div class="product-block text-center">
+      <h2 class="product-title">Discover our categories</h2>
+      <div class="category-grid">
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/RFID-Wristband-Printing-600x600.webp" alt="Category 1" class="grid-image"> <!-- 86:124 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/RFID-Wristband-Printing-600x600.webp" alt="Category 2" class="grid-image"> <!-- 86:125 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/RFID-Wristband-Printing-600x600.webp" alt="Category 3" class="grid-image"> <!-- 86:126 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/RFID-Wristband-Printing-600x600.webp" alt="Category 4" class="grid-image"> <!-- 86:127 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/04/Standard-Business-Card-04-600x600.png" alt="Category 5" class="grid-image"> <!-- 86:129 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/04/Standard-Business-Card-04-600x600.png" alt="Category 6" class="grid-image"> <!-- 86:130 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/04/Standard-Business-Card-04-600x600.png" alt="Category 7" class="grid-image"> <!-- 86:131 -->
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/04/Standard-Business-Card-04-600x600.png" alt="Category 8" class="grid-image"> <!-- 86:132 -->
+      </div>
+    </div>
+
+    <div class="testimonial-block text-center" style="padding: 0px 0; font-family: sans-serif;">
+  <h2 class="product-title" style="margin-bottom: 0px;">What our happy customers say:</h2>
+  
+  <div class="testimonial-slider" style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
+    
+    <!-- Testimonial Box 1 -->
+    <div class="testimonial-item" style="width: 300px;">
+      <h4 class="testimonial-name" style="margin-bottom: 5px;">Juan Mattew</h4>
+      <div class="testimonial-stars" style="margin-bottom: 10px; color: #FFD700;">
+        &#9733; &#9733; &#9733; &#9733; &#9733;
+        
+      </div>
+      <div class="testimonial-card-content" style="background: #f8f8f8; padding: 0px; border-radius: 10px;">
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/05/straps-caps-printing-indeira-duabi-600x600.png" alt="Client 1" 
+        
+        style="width: 100%; border-radius: 8px;">
+      </div>
+    </div>
+
+    
+    <!-- Testimonial Box 2 -->
+    <div class="testimonial-item" style="width: 300px;">
+      <h4 class="testimonial-name" style="margin-bottom: 5px;">Sarah Williams</h4>
+      <div class="testimonial-stars" style="margin-bottom: 10px; color: #FFD700;">
+        &#9733; &#9733; &#9733; &#9733; &#9733;
+      </div>
+      <div class="testimonial-card-content" style="background: #f8f8f8; padding: 0px; border-radius: 10px;">
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/03/Double-Gate-Fold-Brochure-600x600.webp" alt="Client 2" style="width: 100%; border-radius: 8px;">
+      </div>
+    </div>
+
+    <!-- Testimonial Box 3 -->
+    <div class="testimonial-item" style="width: 300px;">
+      <h4 class="testimonial-name" style="margin-bottom: 5px;">David Smith</h4>
+      <div class="testimonial-stars" style="margin-bottom: 10px; color: #FFD700;">
+        &#9733; &#9733; &#9733; &#9733; &#9733;
+      </div>
+      <div class="testimonial-card-content" style="background: #f8f8f8; padding: 0px; border-radius: 10px;">
+        <img src="https://creativeprints.ae/wp-content/uploads/2024/05/straps-caps-printing-indeira-duabi-600x600.png" alt="Client 3" style="width: 100%; border-radius: 8px;">
+      </div>
+      
+    </div>
+    
+ 
+ 
+
+</section>
+<section id="section-main-cta" class="main-cta-section">
+  <div class="container main-cta-content">
+    <div class="cta-text-content">
+      <p class="cta-subtitle">Call To Action</p>
+      <h1 class="cta-heading">Let's Bring Your Ideas to Life</h1>
+      <p class="cta-description">Scelerisque in dolor donec neque velit. Risus aenean integer elementum odio sed adipiscing. Sem id scelerisque nunc quis. Imperdiet nascetur consequat.</p>
+      <div class="cta-contact-info">
+        <h3 class="contact-info-heading">Contact Information :</h3>
+        <div class="contact-details d-flex">
+          <div class="contact-detail-item">
+            <p class="contact-type">Contact Us</p>
+            <p class="contact-value">+971-123-456-789</p>
+          </div>
+          <div class="contact-detail-item">
+            <p class="contact-type">Email Us</p>
+            <p class="contact-value">hi@printshop.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cta-image-area" style="position: relative; width: 100%; height: auto;">
+  <div class="cta-image-placeholder" style="position: relative; width: 100%; height: 100%;">
+    
+    <!-- 🔽 Editable Image: Replace the src URL -->
+    <div 
+         style="width: 100%; max-width: 486px ; height: 602px; border-radius: 16px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+    </div>
+    <!-- Optional visual overlay or grid -->
+    <div class="cta-grid-overlay-visual" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">\
+
+      <!-- Add overlay effects if needed here -->
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+
+
+  
+</section>
+<section id="section-footer" class="footer-section">
+  <div class="container footer-content">
+    <div class="footer-top d-flex align-items-start">
+      <div class="footer-info">
+        <img src="logo white.png" alt="Printshop Logo" class="footer-logo">
+        <p class="footer-tagline">Unlock Your Business's Potential with Our Social Media Solutions</p>
+      </div>
+      <nav class="footer-nav">
+        <ul class="footer-menu">
+          <li><a href="#">Overview</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <hr class="footer-divider">
+      <p class="copyright-text">&copy; 2023 Printshop. All rights reserved.</p>
+    </div>
+  </div>
+</section>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const carouselData = JSON.parse(localStorage.getItem("carouselData")) || {};
+    const imageUrls = carouselData.images || [];
+    const carousel = document.getElementById("carousel");
+
+    if (!carousel) return;
+
+    // Clear any existing content
+    carousel.innerHTML = "";
+
+    imageUrls.forEach((url) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.style = `
+        width:217px;
+        height:180px;
+        border-radius:10px;
+        object-fit:cover;
+        flex-shrink:0;
+        transition:all 0.4s ease;
+        filter:brightness(1);
+      `;
+      img.onmouseover = function () {
+        this.style.transform = "scale(1.05)";
+        this.style.filter = "brightness(1.2) blur(1px)";
+      };
+      img.onmouseout = function () {
+        this.style.transform = "scale(1)";
+        this.style.filter = "brightness(1) blur(0)";
+      };
+      carousel.appendChild(img);
+    });
+  });
+</script>
+<script>
+  const data = JSON.parse(localStorage.getItem("carouselData")) || {};
+  document.getElementById("carousel-heading").innerText = data.heading || "Online Printing Services with CreativePrint";
+  document.getElementById("carousel-description").innerText = data.description || "From business cards to banners, HelloPrint offers a wide range of online printing & personalised print products to enhance your brand and marketing efforts, catering to all your professional and personal printing needs. Flyers, Booklets, Rollup Banners, Posters, Business Cards, Folded Leaflets.";
+</script>
+<script>
+  window.onload = function () {
+    const data = JSON.parse(localStorage.getItem("carouselData")) || {};
+
+    // Set heading
+    if (data.heading) {
+      document.getElementById("carouselHeading").innerText = data.heading;
+    }
+
+    // Set description/paragraph
+    if (data.description) {
+      document.getElementById("carouselParagraph").innerText = data.description;
+    }
+
+    // Replace carousel images
+    if (data.images && data.images.length > 0) {
+      const carouselContainer = document.getElementById("carousel");
+      carouselContainer.innerHTML = ""; // Clear existing images
+
+      data.images.forEach(url => {
+        const img = document.createElement("img");
+        img.src = url;
+        img.style = `
+          width: 217px;
+          height: 180px;
+          border-radius: 10px;
+          object-fit: cover;
+          flex-shrink: 0;
+          transition: all 0.4s ease;
+          filter: brightness(1);
+        `;
+        img.onmouseover = function () {
+          this.style.transform = 'scale(1.05)';
+          this.style.filter = 'brightness(1.2) blur(1px)';
+        };
+        img.onmouseout = function () {
+          this.style.transform = 'scale(1)';
+          this.style.filter = 'brightness(1) blur(0)';
+        };
+        carouselContainer.appendChild(img);
+      });
+    }
+  };
+</script>
+<script>
+  window.onload = function () {
+    const data = JSON.parse(localStorage.getItem("carouselData2")) || {};
+    if (data.heading) {
+      document.getElementById("why-heading").innerText = data.heading;
+    }
+    if (data.description) {
+      document.getElementById("why-description").innerText = data.description;
+    }
+    if (data.images && data.images.length > 0) {
+      const container = document.getElementById("why-carousel");
+      container.innerHTML = ""; // clear existing
+      data.images.forEach((src, i) => {
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = "Image " + (i + 1);
+        img.style.cssText =
+          "width: 337px; height: 222px; border-radius: 10px; object-fit: cover; flex-shrink: 0; transition: all 0.4s ease; border: 0.5px solid #000; background-color: rgba(137,31,26,0.1); box-shadow: 0 0 0 rgba(0,0,0,0); cursor: pointer;";
+        img.onmouseover = function () {
+          img.style.transform = "translateY(-10px) scale(1.05)";
+          img.style.boxShadow = "0 15px 25px rgba(0,0,0,0.2)";
+          img.style.filter = "hue-rotate(-10deg) saturate(1.2)";
+        };
+        img.onmouseout = function () {
+          img.style.transform = "translateY(0) scale(1)";
+          img.style.boxShadow = "0 0 0 rgba(0,0,0,0)";
+          img.style.filter = "none";
+        }
+        container.appendChild(img);
+      });
+    }
+  };
+</script>
+
+
+
+
+
+
+</body>
+<script>
+  const carousel2 = JSON.parse(localStorage.getItem("carouselData2"));
+  if (carousel2) {
+    document.getElementById("carousel2Heading").innerText = carousel2.heading || "";
+    document.getElementById("carousel2Paragraph").innerText = carousel2.description || "";
+    const container2 = document.getElementById("carousel2ImagesContainer");
+    container2.innerHTML = "";
+    carousel2.images.forEach(img => {
+      const image = document.createElement("img");
+      image.src = img;
+      image.style.width = "337px";
+      image.style.height = "222px";
+      image.style.margin = "10px";
+      image.style.borderRadius = "10px";
+      image.style.objectFit = "cover";
+      container2.appendChild(image);
+    });
+  }
+</script>
+
+
+<script>
+  window.addEventListener("DOMContentLoaded", function () {
+    const data = JSON.parse(localStorage.getItem("carouselData"));
+    if (data) {
+      if (data.heading) {
+        const headingEl = document.getElementById("carouselHeading");
+        if (headingEl) headingEl.innerText = data.heading;
+      }
+
+      if (data.description) {
+        const paraEl = document.getElementById("carouselParagraph");
+        if (paraEl) paraEl.innerText = data.description;
+      }
+
+      if (data.images && Array.isArray(data.images)) {
+        const carousel = document.getElementById("carousel");
+        if (carousel) {
+          const imgElements = carousel.getElementsByTagName("img");
+          for (let i = 0; i < imgElements.length && i < data.images.length; i++) {
+            imgElements[i].src = data.images[i];
+          }
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+
+  function toggleMobileMenu() {
+    const navList = document.querySelector("nav ul");
+    navList.classList.toggle("open");
+
+  }
+
+
+
+  
+</script>
+<script>
+  const dropdown = document.getElementById("mega-dropdown");
+  const contentArea = document.getElementById("dropdown-content-area");
+  let hideTimeout;
+
+  const dropdownData = { /* your existing dropdownData stays the same */ };
+
+  // Used on both desktop (hover) and mobile (click)
+  function renderDropdown(id) {
+    const data = dropdownData[id];
+    contentArea.innerHTML = `
+      <div style="width:40%; display:flex; gap:20px;">
+        <div>
+          <h4 style="margin:0 0 10px; color:#891f1a;">${data.title}</h4>
+          <ul style="margin:0;padding:0;list-style:none;line-height:1.8;color:red;">
+            ${data.left.map(li => `<li>${li}</li>`).join('')}
+          </ul>
+        </div>
+        <div>
+          <h4 style="margin:0 0 10px;">&nbsp;</h4>
+          <ul style="margin:0;padding:0;list-style:none;line-height:1.8;">
+            ${data.right.map(li => `<li>${li}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+      <div style="width:1px;background:#ccc;"></div>
+      <div style="width:58%; display:grid; grid-template-columns:repeat(auto-fit, minmax(120px, 1fr)); gap:10px;">
+        ${data.images.map(src => `<img src="${src}" style="width:100%;border-radius:8px;" />`).join('')}
+      </div>
+    `;
+    dropdown.style.opacity = '1';
+    dropdown.style.pointerEvents = 'auto';
+    dropdown.style.transform = 'translateX(-50%) translateY(0)';
+    }
+
+  function showDropdown(id) {
+    if (window.innerWidth > 768) renderDropdown(id); // desktop hover
+  }
+
+  function handleDropdownClick(id) {
+    if (window.innerWidth <= 768) {
+      renderDropdown(id);
+      dropdown.classList.add("show");
+    }
+  }
+
+  function hideDropdown() {
+    if (window.innerWidth > 768) {
+      hideTimeout = setTimeout(() => {
+        dropdown.style.opacity = '0';
+        dropdown.style.pointerEvents = 'none';
+        dropdown.style.transform = 'translateX(-50%) translateY(20px)';
+      }, 200);
+    }
+  }
+
+  function cancelHide() {
+    clearTimeout(hideTimeout);
+  }
+
+  // Allow close on outside tap (mobile)
+  document.addEventListener("click", function (e) {
+    if (window.innerWidth <= 768 && !dropdown.contains(e.target) && !e.target.closest("nav ul li")) {
+      dropdown.classList.remove("show");
+      dropdown.style.opacity = '0';
+      dropdown.style.pointerEvents = 'none';
+      dropdown.style.transform = 'translateX(-50%) translateY(20px)';
+    }
+  });
+</script>
+
+<script>
+  const homepageProducts = JSON.parse(localStorage.getItem("products")) || [];
+
+  homepageProducts.forEach(product => {
+    const html = `
+      <div style="border:1px solid #ccc;padding:15px;margin-bottom:10px;border-radius:6px;">
+        <h3>${product.name}</h3>
+        <img src="${product.image}" style="max-width:150px;">
+        <p>${product.desc}</p>
+      </div>
+    `;
+    document.getElementById("homepage-products").insertAdjacentHTML("beforeend", html);
+  });
+</script>
+<script>
+  window.onload = function () {
+    const data = JSON.parse(localStorage.getItem('carouselData'));
+    if (data) {
+      document.querySelector('#section-services-info h2').innerText = data.heading;
+      document.querySelector('#section-services-info p').innerText = data.description;
+      const imgEls = document.querySelectorAll('#carousel img');
+      imgEls.forEach(img => img.src = data.image); // Optional: replace all images with one, or adjust as needed
+    }
+  };
+</script>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const carouselData = JSON.parse(localStorage.getItem("carouselData")) || {};
+    const imageUrls = carouselData.images || [];
+    const carousel = document.getElementById("carousel");
+
+    // Clear any existing static images (optional)
+    carousel.innerHTML = "";
+
+    imageUrls.forEach((url) => {
+      const img = document.createElement("img");
+      img.src = url;
+      img.style = `
+        width:217px;
+        height:180px;
+        border-radius:10px;
+        object-fit:cover;
+        flex-shrink:0;
+        transition:all 0.4s ease;
+        filter:brightness(1);
+      `;
+      img.onmouseover = function () {
+        this.style.transform = "scale(1.05)";
+        this.style.filter = "brightness(1.2) blur(1px)";
+      };
+      img.onmouseout = function () {
+        this.style.transform = "scale(1)";
+        this.style.filter = "brightness(1) blur(0)";
+      };
+      carousel.appendChild(img);
+    });
+  });
+</script>
+
+
+
+
+</html>
