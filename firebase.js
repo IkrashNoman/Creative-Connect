@@ -17,14 +17,15 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyDvlC2uDSyY3A21hVb-1K-nRl3YVd0Hc6Y",
-  authDomain: "loginpage-86377.firebaseapp.com",
-  projectId: "loginpage-86377",
-  storageBucket: "loginpage-86377.appspot.com",
-  messagingSenderId: "894633941593",
-  appId: "1:894633941593:web:5616e9a6c93d1b1d71af48"
-};
+ const firebaseConfig = {
+    apiKey: "AIzaSyDvlC2uDSyY3A21hVb-1K-nRl3YVd0Hc6Y",
+    authDomain: "loginpage-86377.firebaseapp.com",
+    databaseURL: "https://loginpage-86377-default-rtdb.firebaseio.com",
+    projectId: "loginpage-86377",
+    storageBucket: "loginpage-86377.firebasestorage.app",
+    messagingSenderId: "894633941593",
+    appId: "1:894633941593:web:5616e9a6c93d1b1d71af48"
+  };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
