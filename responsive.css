@@ -1,0 +1,238 @@
+.mobile-nav-toggle{
+   display: none ;
+
+}
+
+@media (max-width: 1170px) {
+    .cta-bar-section {
+        height: 10rem; /* 100px */
+    }
+   .e-con-inner{
+    flex-wrap: wrap;
+    gap: clamp(1.5rem, 2vw, 4rem);
+  }
+
+    .e-con-inner > .e-con.e-child {
+    flex: 0 0 48%; /* Prevents growing/shrinking, sets width */
+    max-width: 48%;
+    box-sizing: border-box; /* Ensures padding doesn’t break layout */
+  }
+  .carousel2-images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 183px; /* optional, but helpful for vertical centering */
+  }
+
+  .carousel2-img {
+    display: none;
+    width: 375px;
+    height: 183px;
+    object-fit: cover;
+  }
+
+  .carousel2-img.active {
+    display: block;
+  }
+}
+
+@media (max-width: 665px){
+    .contact-icon{
+        display: none;
+    }
+  .contact-item {
+    flex-direction: column;
+  }
+
+}
+
+
+@media (max-width: 900px) {
+    .main-header-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Row with logo and search */
+  .main-header-content > .logo,
+  .main-header-content > .search-bar {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  .logo {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Logo and Search bar on same row */
+  .main-header-content > .logo,
+  .main-header-content > .search-bar {
+    width: 100%;
+  }
+
+  .main-header-content {
+    gap: 0.75rem;
+  }
+
+  /* Flex row for logo + search bar */
+  .main-header-content {
+    flex-wrap: wrap;
+  }
+
+  .search-bar {
+    flex-grow: 1;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+
+  .header-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .header-actions > * {
+    flex: 1 1 calc(50% - 1rem);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .action-item,
+  .admin-panel {
+    justify-content: center;
+  }
+
+  #section-category-nav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    width: 250px;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    transition: left 0.3s ease;
+    padding-top: 4rem;
+  }
+
+  #section-category-nav.active {
+    left: 0;
+  }
+
+  #list-category-nav {
+    flex-direction: column;
+    margin-top: 2rem;
+    align-items: flex-start;
+    padding: 1rem;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+
+  .mobile-nav-toggle 
+  {
+       
+    top: 4vw; /* 20px */
+    left: 3vw;
+    color: black;
+    border-radius: 50%;
+    width: 3.75rem; /* 60px */
+    height: 3.75rem;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3);
+    display: block;
+    position: fixed;
+    z-index: 1100;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  #mobile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 900;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  #mobile-overlay.active {
+    display: block;
+  }
+  .cta-heading{
+    width: 100%;
+  }
+  .category-grid {
+    grid-template-columns: 1fr; /* Stack items in a single column */
+  }
+.cta-image-placeholder{
+    display: none;
+  }
+    /* Let heading and description use more horizontal space */
+  .main-cta-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cta-text-content {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .cta-heading,
+  .cta-description {
+    width: 100%;
+    font-size: (1rem, 1vw, 4rem);
+  }
+
+  .cta-image-area {
+    width: 100%;
+    height: auto;
+    margin-top: 2rem;
+  }
+  .main-cta-section {
+  background: linear-gradient(to bottom, #ffffff 55%, #ffede4 45%); 
+    }
+}
+@media (max-width: 520px){
+    .contact-text{
+        font-size: 11px !important;
+    }
+        .promo-text{ 
+        display: none !important;
+    }
+    .cta-bar-section{
+        height: 300px;
+    }
+    
+  .main-cta-section {
+  background: linear-gradient(to bottom, #ffffff 55%, #ffede4 45%); 
+    }
+    .contact-value{
+        font-size: 11px;
+    }
+}
+@media (max-width: 480px){
+ .main-cta-section {
+  background: linear-gradient(to bottom, #ffffff 40%); 
+    }
+    .cta-heading{
+        font-size: 21px;
+    }
+    .cta-description{
+        font-size: 15px;
+    }
+}
+@media (max-width: 0px){
+    
+}

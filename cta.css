@@ -1,0 +1,146 @@
+/* CTA Bar Section */
+.cta-bar-section {
+  background-color: #d9d9d9;
+  height: 6.25rem; /* 100px */
+  margin: 3.125rem 0 1.25rem; 
+}
+
+#section-cta-bar{
+    margin-top: .5rem;
+}
+/* Main CTA Section with background */
+.main-cta-section {
+  background: linear-gradient(to bottom, #ffffff 65%, #ffede4 35%);
+  padding: 6.25rem 0; /* 100px */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background SVG covers entire section */
+.main-cta-bg-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* Main flex layout container */
+.main-cta-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.875rem; /* 30px */
+  position: relative;
+  z-index: 1;
+}
+
+/* Textual content area (left side) */
+.cta-text-content {
+  flex-basis: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* 20px */
+}
+
+.cta-subtitle {
+  color: #847e8c;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.25rem;
+}
+
+.cta-heading {
+  color: #0e0e0e;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 3.5rem; /* 56px */
+  line-height: 1.4;
+  margin: 0;
+}
+
+.cta-description {
+  color: #868686;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 2rem; /* 32px */
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+/* Contact info block (left column) */
+.cta-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* 20px */
+}
+
+.contact-info-heading {
+  color: #271e32;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 1rem; /* 16px */
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Row of contact blocks */
+.contact-details {
+  gap: 6.9375rem; /* 111px */
+}
+
+/* Individual contact block */
+.contact-detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* 10px */
+}
+
+.contact-type {
+  color: #0e0e0e;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem; /* 28px */
+  margin: 0;
+}
+
+.contact-value {
+  color: #271e32;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 2rem;
+  margin: 0;
+}
+
+/* Right side image block */
+.cta-image-area {
+  flex-basis: 50%;
+  position: relative;
+  height: 37.625rem; /* 602px */
+}
+
+/* Placeholder box for image */
+.cta-image-placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: #847e8c;
+  border-radius: 1rem; /* 16px */
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark grid overlay on placeholder */
+.cta-grid-overlay-visual {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(39, 30, 50, 0.8);
+  border-radius: 1rem;
+  background-image: linear-gradient(rgba(57, 41, 76, 0.5) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(57, 41, 76, 0.5) 1px, transparent 1px);
+  background-size: 4rem 4rem; /* 64px */
+}

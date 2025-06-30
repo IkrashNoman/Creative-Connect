@@ -1,0 +1,113 @@
+/* Right panel animation states */
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+/* Mobile menu toggle button (hidden by default) */
+.mobile-menu-toggle {
+  display: none;
+  font-size: 1.125rem; /* 18px */
+  padding: 0.625rem 1.25rem; /* 10px 20px */
+  background-color: #891f1a;
+  color: white;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Global typography and base layout */
+body {
+  font-family: 'Manrope', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #0E0E0E;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5;
+  width: 100%;
+  margin: 0%;
+
+}
+
+/* Page container */
+.page-wrapper {
+  max-width: 90rem; /* 1440px */
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Inner content container */
+.container {
+  width: 100%;
+  max-width: 71.25rem; /* 1140px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.9375rem; /* 15px */
+  padding-right: 0.9375rem;
+  box-sizing: border-box;
+}
+
+/* Utility classes */
+.d-flex { display: flex; }
+.align-items-center { align-items: center; }
+.justify-content-between { justify-content: space-between; }
+.justify-content-center { justify-content: center; }
+.text-center { text-align: center; }
+.hidden { display: none; }
+
+/* Typography utilities */
+.text-white { color: #ffffff; }
+.font-manrope-md { font-family: 'Manrope', sans-serif; font-weight: 500; }
+.font-roboto-md { font-family: 'Roboto', sans-serif; font-weight: 500; }
+
+/* Mobile nav toggle visibility */
+.mobile-nav-toggle {
+  display: none;
+}
+
+/* General image styles */
+img {
+  max-width: 100%;
+  height: 9.375rem; /* 150px */
+  display: block;
+}
+
+/* Icon sizing */
+.small-icon {
+  width: 1rem; /* 16px */
+  height: 1rem;
+}
+
+/* Text variations */
+.white-text { color: white; }
+.small-text { font-size: 0.875rem; /* 14px */ }
+
+    html, body {
+    max-width: 100vw !important;
+    outline: 1px solid rgba(255, 0, 0, 0.2);
+    }
+

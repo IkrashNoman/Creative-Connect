@@ -1,0 +1,160 @@
+/* Contact Bar Section */
+.cta-bar-section {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  border-top: 1px solid #e9ecef;
+}
+
+.e-con-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap:clamp(1rem, 1.5vw, 3rem);
+  padding: 0 20px;
+}
+
+/* Container styling */
+.e-con.e-child {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Icon box wrapper */
+.elementor-icon-box-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+}
+
+/* Icon styling */
+.elementor-icon-box-icon {
+  flex-shrink: 0;
+}
+
+.elementor-icon-box-icon .elementor-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.elementor-icon-box-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+/* WhatsApp styling */
+.footer-btns .elementor-icon-box-icon .elementor-icon {
+  background-color: #25D366;
+}
+
+.footer-btns .elementor-icon-box-icon .elementor-icon:hover {
+  background-color: #128C7E;
+  transform: scale(1.05);
+}
+
+/* Phone styling */
+.footer-btns-phone .elementor-icon-box-icon .elementor-icon {
+  background-color: #007BFF;
+}
+
+.footer-btns-phone .elementor-icon-box-icon .elementor-icon:hover {
+  background-color: #0056B3;
+  transform: scale(1.05);
+}
+
+/* Location styling */
+.footer-btns-location .elementor-icon-box-icon .elementor-icon {
+  background-color: #DC3545;
+}
+
+.footer-btns-location .elementor-icon-box-icon .elementor-icon:hover {
+  background-color: #C82333;
+  transform: scale(1.05);
+}
+
+/* Email styling */
+.footer-btns-email .elementor-icon-box-icon .elementor-icon {
+  background-color: #FD7E14;
+}
+
+.footer-btns-email .elementor-icon-box-icon .elementor-icon:hover {
+  background-color: #E8590C;
+  transform: scale(1.05);
+}
+
+/* Content styling */
+.elementor-icon-box-content {
+  flex: 1;
+}
+
+.elementor-icon-box-title {
+  margin: 0 0 4px 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.elementor-icon-box-title a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.elementor-icon-box-title a:hover {
+  color: #007BFF;
+}
+
+.elementor-icon-box-description {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* WhatsApp specific colors */
+.footer-btns .elementor-icon-box-title a {
+  color: #25D366;
+}
+
+.footer-btns .elementor-icon-box-title a:hover {
+  color: #128C7E;
+}
+
+/* Phone specific colors */
+.footer-btns-phone .elementor-icon-box-title a {
+  color: #007BFF;
+}
+
+.footer-btns-phone .elementor-icon-box-title a:hover {
+  color: #0056B3;
+}
+
+/* Location specific colors */
+.footer-btns-location .elementor-icon-box-title a {
+  color: #DC3545;
+}
+
+.footer-btns-location .elementor-icon-box-title a:hover {
+  color: #C82333;
+}
+
+/* Email specific colors */
+.footer-btns-email .elementor-icon-box-title a {
+  color: #FD7E14;
+}
+
+.footer-btns-email .elementor-icon-box-title a:hover {
+  color: #E8590C;
+}
+
+

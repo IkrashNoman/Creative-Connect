@@ -1,0 +1,68 @@
+/* Services Info Section */
+.services-info-section {
+  background-color: #ffffff;
+  padding: 0;
+}
+
+.service-block {
+  margin-bottom: 3.75rem; /* 60px */
+  text-align: center;
+}
+
+.service-title {
+  color: #891f1a;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 2rem; /* 32px */
+  line-height: 2.5rem; /* 40px */
+  margin-bottom: 0.625rem; /* 10px */
+}
+
+.service-description {
+  color: #767676;
+  font-family: 'SF Pro', sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem; /* 12px */
+  line-height: 1rem; /* 16px */
+  max-width: 43.125rem; /* 690px */
+  margin: 0 auto 1.875rem; /* 30px */
+}
+
+/* Image carousels and showcase */
+.image-carousel,
+.image-showcase {
+  display: flex;
+  gap: 0.3125rem; /* 5px */
+  flex-direction: row;
+   object-fit: contain;
+    justify-content: center;  /* Center remaining images horizontally */
+  align-items: center; 
+}
+
+.carousel-image {
+  width: 14.0625rem; /* 225px */
+  height: 9.375rem; /* 150px */
+  background-color: #d9d9d9;
+  border-radius: 0.625rem; /* 10px */
+  object-fit: cover;
+}
+
+.showcase-image {
+  width: 21.0625rem; /* 337px */
+  height: 13.875rem; /* 222px */
+  background-color: rgba(137, 31, 26, 0.3);
+  border: 0.25px solid #000;
+  border-radius: 0.625rem;
+  object-fit: cover;
+}
+
+/* Override global image max-width in carousel arrows */
+.carousel-arrow img {
+  max-width: none;
+}
+
+.services-container {
+  padding: 0;
+  font-family: sans-serif;
+  text-align: center;
+}

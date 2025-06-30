@@ -1,0 +1,76 @@
+/* Footer container */
+.footer-section {
+  background-color: #891f1a;
+  color: #ffffff;
+  padding: 5rem 0 1.875rem; /* 80px 0 30px */
+}
+
+/* Top section with logo/info/menus */
+.footer-top {
+  display: flex;
+  gap: 0.625rem; /* 10px */
+  margin-bottom: 1.875rem; /* 30px */
+}
+
+/* Footer branding/info area */
+.footer-info {
+  flex-basis: 18.75rem; /* 300px */
+}
+
+/* Logo size and spacing below it */
+.footer-logo {
+  width: 14.5rem;  /* 232px */
+  height: 3.5rem;  /* 56px */
+  margin-bottom: 0.875rem; /* 14px */
+}
+
+/* Short tagline under logo */
+.footer-tagline {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 1rem; /* 16px */
+  line-height: 1.6;
+  margin: 0;
+  max-width: 18.125rem; /* 290px */
+}
+
+/* Navigation links list */
+.footer-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9375rem; /* 15px */
+}
+
+/* Footer menu links */
+.footer-menu a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1rem;
+  letter-spacing: 0.01rem; /* 0.16px */
+}
+
+/* Horizontal divider line */
+.footer-divider {
+  border: 0;
+  border-top: 0.03125rem solid #847e8c; /* 0.5px */
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+/* Copyright text at bottom */
+.copyright-text {
+  text-align: center;
+  color: #f3efee;
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+ 

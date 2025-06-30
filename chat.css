@@ -1,0 +1,74 @@
+/* Floating chat toggle button */
+.chat-toggle {
+  position: fixed;
+  bottom: 5vw; /* 20px */
+  right: 4vw;
+  background: #ff5858;
+  color: white;
+  border-radius: 50%;
+  width: 3.75rem; /* 60px */
+  height: 3.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 9999;
+  box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.3); /* 10px */
+}
+
+/* Chat widget container */
+.chat-widget {
+  position: fixed;
+  bottom: 5.625rem; /* 90px */
+  right: 1.25rem;
+  width: 18.75rem; /* 300px */
+  height: 25rem; /* 400px */
+  background: white;
+  border-radius: 0.75rem; /* 12px */
+  box-shadow: 0 0 0.9375rem rgba(0, 0, 0, 0.2); /* 15px */
+  z-index: 9999;
+  overflow: hidden;
+  display: none;
+  flex-direction: column;
+}
+
+/* Chat header bar */
+.chat-header {
+  background: #891f1a;
+  color: white;
+  padding: 0.75rem; /* 12px */
+  font-weight: 600;
+}
+
+/* Scrollable message area */
+.chat-messages {
+  flex: 1;
+  padding: 0.625rem; /* 10px */
+  overflow-y: auto;
+}
+
+/* Input section at the bottom */
+.chat-input-container {
+  padding: 0.625rem;
+  border-top: 1px solid #ccc;
+  display: flex;
+  gap: 0.5rem; /* 8px */
+}
+
+/* Text input */
+.chat-input {
+  flex: 1;
+  padding: 0.5rem; /* 8px */
+  border-radius: 0.375rem; /* 6px */
+  border: 1px solid #ccc;
+}
+
+/* Send button */
+.chat-send-button {
+  padding: 0.5rem 0.75rem; /* 8px 12px */
+  background: #891f1a;
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+}
