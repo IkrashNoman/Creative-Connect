@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generated Page</title>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="payment-page-1.css">
+  <style id="sections-styles">
+  </style>
+  <script src="payment-page-1.js" defer></script>
+</head>
+<body>
+<section id="header">
+  <div class="page-wrapper">
+    <header class="site-header">
+      <img src="images/1_98.svg" alt="Creative Connect Advertising L.L.C. Logo" class="logo">
+      <h1 class="page-title">Payment</h1>
+      <div class="user-profile">
+        <div class="avatar-container">
+          <div class="avatar"></div>
+        </div>
+        <img src="images/1_94.svg" alt="Profile menu dropdown" class="dropdown-arrow">
+      </div>
+    </header>
+  </div>
+</section>
+<section id="checkout">
+  <div class="page-wrapper">
+    <main class="checkout-container">
+      <div class="payment-column">
+        <div class="stepper">
+          <div class="step active"><span><a href = 'payment-page-1.html'>1</a></span></div>
+          <div class="step-line"></div>
+          <div class="step"><span><a href = 'payment-page-2.html'>2</a></span></div>
+          <div class="step-line"></div>
+          <div class="step"><span><a href = 'payment-page-3.html'>3</a></span></div>
+        </div>
+        <div class="payment-form-container">
+          <h2 class="form-title">Payment Details</h2>
+          <form>
+            <div class="form-group">
+              <label for="card-name">Name on Card</label>
+              <input type="text" id="card-name" value="Alfonso Delarosa" placeholder="Alfonso Delarosa">
+            </div>
+            <div class="form-group">
+              <label for="card-number">Card number</label>
+              <input type="text" id="card-number" value="1220 - 1289 - 9981 - 2987" placeholder="xxxx - xxxx - xxxx - xxxx">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="exp-month">Expiration Date</label>
+                <div class="exp-date-inputs">
+                  <input type="text" id="exp-month" value="07" placeholder="MM" class="exp-input">
+                  <input type="text" id="exp-year" value="2021" placeholder="YYYY" class="exp-input">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" value="520" placeholder="123" class="cvv-input">
+              </div>
+            </div>
+            <button type="submit" class="review-order-btn">Review Order</button>
+          </form>
+        </div>
+      </div>
+      <aside class="order-summary-column">
+        <div class="order-summary-content">
+          <h3 class="order-title">Order</h3>
+          <ul class="product-list">
+            <li class="product-item">
+              <div class="product-image-placeholder"></div>
+              <div class="product-details">
+                <p class="product-name">T-shirt Uniqlu - Black Stone</p>
+                <p class="product-variant">Black Stone, Large</p>
+                <div class="quantity-selector">
+                  <button type="button" class="quantity-btn"><img src="images/1_78.svg" alt="Remove one item"></button>
+                  <span class="quantity-text">1</span>
+                  <button type="button" class="quantity-btn"><img src="images/1_71.svg" alt="Add one item"></button>
+                </div>
+              </div>
+              <p class="product-price">$32</p>
+              <button type="button" class="delete-btn">
+                <!--merged image-->
+                <div class="icon-stack">
+                  <img src="images/icons8-delete-30.png" alt="Delete item" class="icon-base">
+                </div>
+              </button>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder"></div>
+              <div class="product-details">
+                <p class="product-name">Uniqlu Chino Pants - Black Stone</p>
+                <p class="product-variant">Black Stone, Large</p>
+                <div class="quantity-selector">
+                  <button type="button" class="quantity-btn"><img src="images/1_49.svg" alt="Remove one item"></button>
+                  <span class="quantity-text">2</span>
+                  <button type="button" class="quantity-btn"><img src="images/1_42.svg" alt="Add one item"></button>
+                </div>
+              </div>
+              <p class="product-price">$124</p>
+              <button type="button" class="delete-btn">
+                <!--merged image-->
+                <div class="icon-stack">
+                 <img src="images/icons8-delete-30.png" alt="Delete item" class="icon-base">
+                </div>
+              </button>
+            </li>
+          </ul>
+          <div class="discount-form">
+            <label for="discount-code">Discount Code</label>
+            <div class="discount-input-group">
+              <input type="text" id="discount-code" value="520" placeholder="Enter code">
+              <button type="button" class="apply-btn">Apply</button>
+            </div>
+          </div>
+          <div class="cost-breakdown">
+            <div class="cost-row"><span>Subtotal</span><span>$156</span></div>
+            <div class="cost-row"><span>Tax</span><span>$15</span></div>
+            <div class="cost-row"><span>Shipping</span><span>$27</span></div>
+          </div>
+          <hr class="summary-divider">
+          <div class="total-row">
+            <strong>Total</strong>
+            <strong>$198</strong>
+          </div>
+        </div>
+        <div class="scrollbar-track">
+          <div class="scrollbar-thumb"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+</section>
+</body>
+</html>

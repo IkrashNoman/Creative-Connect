@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generated Page</title>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css">
+    <link rel = 'stylesheet' href = 'payment-page-1.css'>
+  <link rel = 'stylesheet' href = 'payment-page-2.css'>
+  </style>
+  <script src="global.js" defer></script>
+  <script src='payment-page-1.js' defer></script>
+</head>
+<body>
+    <header class="site-header">
+      <img src="images/1_98.svg" alt="Creative Connect Advertising L.L.C. Logo" class="logo">
+      <h1 class="page-title">Payment</h1>
+      <div class="user-profile">
+        <div class="avatar-container">
+          <div class="avatar"></div>
+        </div>
+        <img src="images/1_94.svg" alt="Profile menu dropdown" class="dropdown-arrow">
+      </div>
+    </header>
+<main class="checkout-main">
+    <div class="checkout-grid">
+        <section id="delivery-address" class="delivery-section">
+            <div class="stepper">
+                <div class="step-item">
+                    <div class="step-circle"><a href = 'payment-page-1.html'>1</a></div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step-item active">
+                    <div class="step-circle"><a href = 'payment-page-2.html'>2</a></div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step-item">
+                    <div class="step-circle"><a href = 'payment-page-3.html'>3</a></div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Delivery Address</h2>
+            <form class="delivery-form">
+                <div class="form-group">
+                    <label for="full-name">Full Name</label>
+                    <input type="text" id="full-name" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address (for confirmation/updates)</label>
+                    <input type="email" id="email" placeholder="johndoe@example.com">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number (for delivery contact)</label>
+                        <input type="tel" id="phone" placeholder="1220 - 1289 - 9981 - 2987">
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company Name (optional)</label>
+                        <input type="text" id="company" placeholder="Creative Solutions LLC">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group" style="flex-grow: 3;">
+                        <label for="address">Street Address / Building Name</label>
+                        <input type="text" id="address" placeholder="Office 401, Al Fattan Plaza">
+                    </div>
+                    <div class="form-group" style="flex-grow: 1;">
+                        <label for="city">City</label>
+                        <input type="text" id="city" placeholder="Dubai">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="zip-code">Zip Code</label>
+                        <input type="text" id="zip-code" placeholder="12345">
+                    </div>
+                    <div class="form-group">
+                        <label for="instructions">Delivery Instructions (optional)</label>
+                        <input type="text" id="instructions" placeholder="johndoe@example.com">
+                    </div>
+                </div>
+                <button type="submit" class="btn-submit">Review Order</button>
+            </form>
+        </section>
+
+      <aside class="order-summary-column">
+        <div class="order-summary-content">
+          <h3 class="order-title">Order</h3>
+          <ul class="product-list">
+            <li class="product-item">
+              <div class="product-image-placeholder"></div>
+              <div class="product-details">
+                <p class="product-name">T-shirt Uniqlu - Black Stone</p>
+                <p class="product-variant">Black Stone, Large</p>
+                <div class="quantity-selector">
+                  <button type="button" class="quantity-btn"><img src="images/1_78.svg" alt="Remove one item"></button>
+                  <span class="quantity-text">1</span>
+                  <button type="button" class="quantity-btn"><img src="images/1_71.svg" alt="Add one item"></button>
+                </div>
+              </div>
+              <p class="product-price">$32</p>
+              <button type="button" class="delete-btn">
+                <!--merged image-->
+                <div class="icon-stack">
+                  <img src="images/icons8-delete-30.png" alt="Delete item" class="icon-base">
+                </div>
+              </button>
+            </li>
+            <li class="product-item">
+              <div class="product-image-placeholder"></div>
+              <div class="product-details">
+                <p class="product-name">Uniqlu Chino Pants - Black Stone</p>
+                <p class="product-variant">Black Stone, Large</p>
+                <div class="quantity-selector">
+                  <button type="button" class="quantity-btn"><img src="images/1_49.svg" alt="Remove one item"></button>
+                  <span class="quantity-text">2</span>
+                  <button type="button" class="quantity-btn"><img src="images/1_42.svg" alt="Add one item"></button>
+                </div>
+              </div>
+              <p class="product-price">$124</p>
+              <button type="button" class="delete-btn">
+                <!--merged image-->
+                <div class="icon-stack">
+                  <img src="images/icons8-delete-30.png" alt="Delete item" class="icon-base">
+                </div>
+              </button>
+            </li>
+          </ul>
+          <div class="discount-form">
+            <label for="discount-code">Discount Code</label>
+            <div class="discount-input-group">
+              <input type="text" id="discount-code" value="520" placeholder="Enter code">
+              <button type="button" class="apply-btn">Apply</button>
+            </div>
+          </div>
+          <div class="cost-breakdown">
+            <div class="cost-row"><span>Subtotal</span><span>$156</span></div>
+            <div class="cost-row"><span>Tax</span><span>$15</span></div>
+            <div class="cost-row"><span>Shipping</span><span>$27</span></div>
+          </div>
+          <hr class="summary-divider">
+          <div class="total-row">
+            <strong>Total</strong>
+            <strong>$198</strong>
+          </div>
+        </div>
+        <div class="scrollbar-track">
+          <div class="scrollbar-thumb"></div>
+        </div>
+      </aside>
+    </div>
+</main>
+</body>
+</html>
