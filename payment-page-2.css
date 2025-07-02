@@ -107,7 +107,7 @@ label {
     .delivery-form {
         display: flex;
         flex-direction: column;
-        gap: 28px;
+        /* gap: 28px; */
     }
     .form-row {
         display: flex;
@@ -123,13 +123,12 @@ label {
         font-weight: 600;
         padding: 16px;
         border-radius: 6px;
-        width: 240px;
         margin-top: 20px;
         box-shadow: 0px 24px 40px -12px rgba(0, 0, 0, 0.08);
     }
    
 
-    @media (max-width: 1200px) {
+    @media (max-width: 993px) {
         .checkout-grid {
             grid-template-columns: 1fr;
         }
